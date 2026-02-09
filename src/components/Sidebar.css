@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+/* =========================
+   Sidebar Container
+========================= */
+.sidebar {
+  width: 260px;
+  background-color: #0f172a; /* dark blue */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  overflow-y: auto;
+  padding-top: 0px !important;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+/* =========================
+   Top Header (Logo + Text)
+========================= */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-image {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+.sidebar.collapsed .logo-image {
+  width: 42px;
+}
+
+/* Brand text */
+.brand-text h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.brand-text span {
+  font-size: 11px;
+  color: #ef4444;
+  font-weight: 500;
+}
+
+/* =========================
+   Section Titles
+========================= */
+.sidebar-title {
+  padding: 15px 25px 15px 25px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #b5b5c3;
+    opacity: 0.5;
+    text-transform: uppercase;
+    font-family: "IBM Plex Sans", sans-serif;    line-height: 1.5;
+}
+
+/* =========================
+   Menu Items
+========================= */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 25px;
+  cursor: pointer;
+  color: #b5b5c3;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "IBM Plex Sans", sans-serif;
+  transition: background 0.2s ease, color 0.2s ease;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.menu-item span{
+  font-family: "IBM Plex Sans", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.submenu-item{
+  font-family: "IBM Plex Sans", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.menu-item svg {
+  font-size: 18px;
+}
+
+/* Hover */
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+/* Active / Open */
+.menu-item.active,
+.menu-item.open {
+  color: #ffffff;
+}
+
+/* Arrow */
+.arrow {
+  margin-left: auto;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.menu-item.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* =========================
+   Submenu
+========================= */
+.submenu {
+  padding-bottom: 8px;
+}
+
+.submenu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 45px;
+  font-size: 14px;
+  color: #b5b5c3;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+/* Dot icon */
+.dot-icon {
+  font-size: 10px;
+}
+
+/* Submenu hover */
+.submenu-item:hover {
+  color: #ffffff;
+}
+
+/* Submenu active */
+.submenu-item.active {
+  color: #ef4444;
+}
+
+/* =========================
+   Logout
+========================= */
+.menu-item.logout {
+  color: #f87171;
+}
+
+.menu-item.logout:hover {
+  background: rgba(248, 113, 113, 0.15);
+  color: #ffffff;
+}
+
+/* =========================
+   Scrollbar (optional)
+========================= */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+
+/* Hover submenu panel (for collapsed sidebar) */
+.submenu-hover-panel {
+  position: absolute;
+  left: 80px; /* width of collapsed sidebar */
+  top: 0;
+  background-color: #0f172a;
+  border-left: 1px solid #1e293b;
+  padding: 10px;
+  min-width: 200px;
+  z-index: 1000;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Adjust submenu items in hover panel */
+.submenu-hover-panel .submenu-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.submenu-hover-panel .submenu-item.active {
+  background-color: #1e293b;
+}

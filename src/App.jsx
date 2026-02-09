@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/*import Layout from "./components/Layout";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+/*const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Layout>
+      <h2>Hello John, Welcome Back!</h2>
+      <p>Your dashboard content goes here.</p>
+    </Layout>
+  );
+};
 
-export default App
+export default App;*/
+import { Routes, Route, Navigate } from "react-router-dom";
+import Layout from "./components/Layout";
+
+import Dashboard from "./pages/Dashboard";
+
+import AddCourse from "./pages/AddCourse";
+import AddCollage from "./pages/AddCollage";
+import AddAgreement from "./pages/AddAgreement";
+import AddEnrolment from "./pages/AddEnrolment";
+import EnrolmentChecklist from "./pages/EnrolmentChecklist";
+import AddFlyer from "./pages/AddFlyer";
+
+
+const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        {/* default page */}
+
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/addcourse" element={<AddCourse />} />
+        <Route path="/addcollage" element={<AddCollage />} />
+        <Route path="/addagreement" element={<AddAgreement />} />
+        <Route path="/addenrolment" element={<AddEnrolment />} />
+        <Route path="/enrolmentchecklist" element={<EnrolmentChecklist />} />
+        <Route path="/addflyer" element={<AddFlyer />} />
+
+
+      </Route>
+    </Routes>
+  );
+};
+
+export default App;
+

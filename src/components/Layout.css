@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+.layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f5f7fb;
+}
+
+.content {
+  background: #f5f7fb;
+  width: 100%;
+  overflow-y: auto;
+}
