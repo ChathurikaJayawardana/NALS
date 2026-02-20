@@ -2,8 +2,8 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faUpload } from "@fortawesome/free-solid-svg-icons";
 
-import FormActions from "../components/FormActions";
-import "./AddCourse.css";
+import FormActions from "../../components/FormActions";
+import "../../assets/styles/style.css";
 
 const AddAgreement = () => {
   const [formData, setFormData] = useState({
@@ -61,18 +61,19 @@ const AddAgreement = () => {
         </p>
 
         <form className="form-content" onSubmit={handleSubmit}>
-          {/* Agreement Name */}
+        
           <div className="form-group full">
             <label>Agreement Name</label>
             <input
               type="text"
               name="agreementName"
+              placeholder="Agreement Name"
               value={formData.agreementName}
               onChange={handleChange}
             />
           </div>
 
-          {/* Dates */}
+        
           <div className="form-row">
             <div className="form-group">
               <label>Start Date</label>
@@ -95,7 +96,7 @@ const AddAgreement = () => {
             </div>
           </div>
 
-          {/* Renewal + Status */}
+         
           <div className="form-row">
             <div className="form-group">
               <label>Renewal Date</label>
@@ -114,7 +115,7 @@ const AddAgreement = () => {
                 value={formData.status}
                 onChange={handleChange}
               >
-                <option value="">Select</option>
+                <option value="">Status</option>
                 <option value="Active">Active</option>
                 <option value="Pending">Pending</option>
                 <option value="In Progress">In Progress</option>
@@ -122,18 +123,19 @@ const AddAgreement = () => {
             </div>
           </div>
 
-          {/* Remark */}
+       
           <div className="form-group full">
             <label>Remark</label>
             <textarea
               name="remark"
               rows="3"
+              placeholder="Remark"
               value={formData.remark}
               onChange={handleChange}
             />
           </div>
 
-          {/* File Upload */}
+          
           <div className="form-group full">
             <label>Attach Agreement (PDF)</label>
 
@@ -154,7 +156,7 @@ const AddAgreement = () => {
             </div>
           </div>
 
-          {/* Buttons */}
+          
           <FormActions onSave={handleSubmit} onCancel={handleCancel} />
         </form>
       </div>

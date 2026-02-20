@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-import FormActions from "../components/FormActions";
-import "./AddCourse.css";
+import FormActions from "../../components/FormActions";
+import "../../assets/styles/style.css";
 
 const AddCollege = () => {
   const navigate = useNavigate();
@@ -18,13 +18,11 @@ const AddCollege = () => {
     hasAgreement: "",
   });
 
-  // normal input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ⭐ RADIO LOGIC (BEST OPTION)
   const handleAgreementChange = (e) => {
     const value = e.target.value;
 
@@ -33,13 +31,13 @@ const AddCollege = () => {
       hasAgreement: value,
     }));
 
-    // 🚀 instant navigation
+    
     if (value === "Yes") {
       navigate("/addagreement", { state: formData });
     }
   };
 
-  // Save ONLY when No
+
   const handleSave = () => {
     if (formData.hasAgreement === "Yes") return;
 
@@ -76,6 +74,7 @@ const AddCollege = () => {
             <input
               type="text"
               name="providerId"
+              placeholder="College / Provider ID"
               value={formData.providerId}
               onChange={handleChange}
             />
@@ -86,6 +85,7 @@ const AddCollege = () => {
             <input
               type="text"
               name="tradingName"
+              placeholder="Trading Name"
               value={formData.tradingName}
               onChange={handleChange}
             />
@@ -96,6 +96,7 @@ const AddCollege = () => {
             <input
               type="text"
               name="instituteName"
+              placeholder="Institute Name"
               value={formData.instituteName}
               onChange={handleChange}
             />
@@ -107,6 +108,7 @@ const AddCollege = () => {
               <input
                 type="text"
                 name="cricosCode"
+                placeholder="CRICOS Code"
                 value={formData.cricosCode}
                 onChange={handleChange}
               />
@@ -117,6 +119,7 @@ const AddCollege = () => {
               <input
                 type="text"
                 name="websiteLink"
+                placeholder="Website Link"
                 value={formData.websiteLink}
                 onChange={handleChange}
               />
@@ -154,7 +157,7 @@ const AddCollege = () => {
 </div>
 
 
-          {/* Save works only for NO */}
+        
           <FormActions onSave={handleSave} onCancel={handleCancel} />
         </div>
       </div>

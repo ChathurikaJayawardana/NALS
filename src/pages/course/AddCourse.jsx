@@ -2,8 +2,8 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
-import FormActions from "../components/FormActions";
-import "./AddCourse.css";
+import FormActions from "../../components/FormActions";
+import "../../assets/styles/style.css";
 
 const AddCourse = () => {
   const [formData, setFormData] = useState({
@@ -55,6 +55,7 @@ const AddCourse = () => {
             <input
               type="text"
               name="courseId"
+              placeholder="Course Id"
               value={formData.courseId}
               onChange={handleChange}
             />
@@ -65,6 +66,7 @@ const AddCourse = () => {
             <input
               type="text"
               name="tradingName"
+              placeholder="Trading Name"
               value={formData.tradingName}
               onChange={handleChange}
             />
@@ -75,6 +77,7 @@ const AddCourse = () => {
             <input
               type="text"
               name="courseName"
+              placeholder="Course Name"
               value={formData.courseName}
               onChange={handleChange}
             />
@@ -86,6 +89,7 @@ const AddCourse = () => {
               <input
                 type="text"
                 name="cricosCode"
+                placeholder="CRICOS Code"
                 value={formData.cricosCode}
                 onChange={handleChange}
               />
@@ -96,6 +100,7 @@ const AddCourse = () => {
               <input
                 type="text"
                 name="totalFee"
+                placeholder="Total Fee"
                 value={formData.totalFee}
                 onChange={handleChange}
               />
@@ -108,6 +113,7 @@ const AddCourse = () => {
               <input
                 type="text"
                 name="duration"
+                placeholder="Duration"
                 value={formData.duration}
                 onChange={handleChange}
               />
@@ -120,7 +126,7 @@ const AddCourse = () => {
                 value={formData.state}
                 onChange={handleChange}
               >
-                <option value="">Select</option>
+                <option value="">State</option>
                 <option value="NSW">NSW</option>
                 <option value="VIC">VIC</option>
                 <option value="QLD">QLD</option>

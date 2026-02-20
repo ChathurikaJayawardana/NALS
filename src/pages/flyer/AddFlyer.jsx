@@ -2,8 +2,8 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faUpload } from "@fortawesome/free-solid-svg-icons";
 
-import FormActions from "../components/FormActions";
-import "./AddCourse.css";
+import FormActions from "../../components/FormActions";
+import "../../assets/styles/style.css";
 
 const AddFlyer = () => {
   const [formData, setFormData] = useState({
@@ -50,9 +50,7 @@ const AddFlyer = () => {
           - General Form Elements
         </p>
 
-
         <form className="form-content" onSubmit={handleSubmit}>
-          {/* Provider Select */}
           <div className="form-group">
             <label>College / Provider</label>
             <select
@@ -60,25 +58,20 @@ const AddFlyer = () => {
               value={formData.provider}
               onChange={handleChange}
             >
-              <option value="">Select</option>
+              <option value="">College / Provider</option>
               <option value="Active">AAPOLY</option>
               <option value="Pending">AIA</option>
               <option value="In Progress">ASLI</option>
             </select>
           </div>
 
-          {/* File Upload */}
           <div className="form-group full">
             <label>Attach Flyer</label>
 
             <div className="upload-box">
               <p>Upload or Drag & Drop your file</p>
 
-              <input
-                type="file"
-                accept=".pdf"
-                onChange={handleFileChange}
-              />
+              <input type="file" accept=".pdf" onChange={handleFileChange} />
 
               <button type="button" className="upload-btn">
                 <FontAwesomeIcon icon={faUpload} /> Select Flyer
@@ -88,7 +81,6 @@ const AddFlyer = () => {
             </div>
           </div>
 
-          {/* Actions */}
           <FormActions onSave={handleSubmit} onCancel={handleCancel} />
         </form>
       </div>

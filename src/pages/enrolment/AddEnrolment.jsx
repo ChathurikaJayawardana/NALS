@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { FaPaperclip, FaPlus, FaTrash } from "react-icons/fa";
+import { FaPaperclip, FaTrash } from "react-icons/fa";
 
-import FormActions from "../components/FormActions";
-import "./AddCourse.css";
+import FormActions from "../../components/FormActions";
+import "../../assets/styles/style.css";
 
 const AddEnrolment = () => {
   const [formData, setFormData] = useState({
@@ -18,19 +18,20 @@ const AddEnrolment = () => {
   const [forms, setForms] = useState([{ name: "", file: null }]);
   const fileRefs = useRef([]);
 
-  /* ---------- normal input handling ---------- */
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  /* ---------- related forms logic ---------- */
+
   const handleAddForm = () => {
-    setForms([...forms, { name: "", file: null }]);
+    setForms((prev) => [...prev, { name: "", file: null }]);
   };
 
   const handleRemoveForm = (index) => {
-    setForms(forms.filter((_, i) => i !== index));
+    setForms((prev) => prev.filter((_, i) => i !== index));
+    fileRefs.current.splice(index, 1);
   };
 
   const handleFormNameChange = (index, value) => {
@@ -46,24 +47,10 @@ const AddEnrolment = () => {
   };
 
   const openFilePicker = (index) => {
-    if (fileRefs.current[index]) {
-      fileRefs.current[index].click();
-    }
+    fileRefs.current[index]?.click();
   };
 
-  /* ---------- save / cancel ---------- */
   const handleSubmit = () => {
-    const data = new FormData();
-
-    Object.keys(formData).forEach((key) => {
-      data.append(key, formData[key]);
-    });
-
-    forms.forEach((f, i) => {
-      data.append(`forms[${i}][name]`, f.name);
-      data.append(`forms[${i}][file]`, f.file);
-    });
-
     console.log("Submitting enrolment:", { formData, forms });
     alert("Enrolment details saved!");
   };
@@ -92,7 +79,7 @@ const AddEnrolment = () => {
         </p>
 
         <div className="form-content">
-          {/* College */}
+          
           <div className="form-group full">
             <label>College / Provider</label>
             <select
@@ -100,104 +87,99 @@ const AddEnrolment = () => {
               value={formData.college}
               onChange={handleChange}
             >
-              <option value="">Select College</option>
+              <option value="">College / Provider</option>
               <option value="ABC">ABC College</option>
               <option value="XYZ">XYZ Institute</option>
             </select>
           </div>
 
-          {/* URL */}
+         
           <div className="form-group full">
             <label>Enrolment URL</label>
             <input
               type="text"
               name="enrolmentUrl"
+              placeholder="Enrolment URL"
               value={formData.enrolmentUrl}
               onChange={handleChange}
-              placeholder="https://www.example.com"
             />
           </div>
 
-          {/* Username / Password */}
+         
           <div className="form-row">
             <div className="form-group">
-              <label>Enrolment User Name</label>
+              <label>User Name</label>
               <input
                 type="text"
                 name="username"
+                placeholder="User Name"
                 value={formData.username}
                 onChange={handleChange}
               />
             </div>
 
             <div className="form-group">
-              <label>Enrolment Password</label>
+              <label>Password</label>
               <input
                 type="password"
                 name="password"
+                placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
               />
             </div>
           </div>
 
-          {/* Email */}
+         
           <div className="form-group full">
-            <label>Enrolment Email</label>
+            <label>Email</label>
             <input
               type="email"
               name="email"
+              placeholder="Email"
               value={formData.email}
               onChange={handleChange}
             />
           </div>
 
-          {/* Related Forms Header */}
-          <div className="form-group full related-header">
+         
+          <div className="related-header">
             <label>Related Forms</label>
-            <button type="button" className="btn-add" onClick={handleAddForm}>
-              <FaPlus /> Add Forms
+            <button
+              type="button"
+              className="add-more-link"
+              onClick={handleAddForm}
+            >
+              + Add more files
             </button>
           </div>
 
-          {/* Related Forms Rows */}
+         
           {forms.map((form, index) => (
-            <div className="form-row" key={index}>
-              {/* Form Name */}
-              <div className="form-group">
+            <div className="related-row" key={index}>
+              <div className="form-group full">
                 <label>Form Name</label>
                 <input
                   type="text"
                   value={form.name}
+                  placeholder="Add Form Name"
                   onChange={(e) =>
                     handleFormNameChange(index, e.target.value)
                   }
-                  placeholder="Eg: Application Form"
                 />
               </div>
 
-              {/* Attach File */}
-              <div className="form-group attach-group">
-                <label>Attach Form</label>
+              <div className="form-group full">
+                <label>Add Form</label>
 
                 <div
-                  className={`attach-box ${form.file ? "has-file" : ""}`}
+                  className="attach-box"
                   onClick={() => openFilePicker(index)}
                 >
-                  <div className="attach-icon">
-                    <FaPaperclip />
-                  </div>
-
-                  <div className="attach-text">
-                    <span className="attach-title">
-                      {form.file
-                        ? form.file.name
-                        : "Click to attach file"}
-                    </span>
-                    <span className="attach-sub">
-                      PDF, DOC, DOCX (Max 5MB)
-                    </span>
-                  </div>
+                  <FaPaperclip />
+                  <span>
+                    {form.file ? form.file.name : "Attach file"}
+                  </span>
                 </div>
 
                 <input
@@ -208,22 +190,22 @@ const AddEnrolment = () => {
                     handleFileChange(index, e.target.files[0])
                   }
                 />
-              </div>
 
-              {/* Remove Button */}
+                
+              </div>
               {forms.length > 1 && (
-                <button
-                  type="button"
-                  className="btn-remove"
-                  onClick={() => handleRemoveForm(index)}
-                >
-                  <FaTrash />
-                </button>
-              )}
+                  <button
+                    type="button"
+                    className="delete-btn"
+                    onClick={() => handleRemoveForm(index)}
+                  >
+                    <FaTrash />
+                  </button>
+                )}
             </div>
           ))}
 
-          {/* Buttons */}
+     
           <FormActions onSave={handleSubmit} onCancel={handleCancel} />
         </div>
       </div>

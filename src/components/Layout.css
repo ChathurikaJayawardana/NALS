@@ -14,11 +14,11 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: #f5f7fb;
+  background-color: #fafbfd;
 }
 
 .content {
-  background: #f5f7fb;
+  background: #fafbfd;
   width: 100%;
   overflow-y: auto;
 }

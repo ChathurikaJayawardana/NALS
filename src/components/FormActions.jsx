@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFloppyDisk, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faFloppyDisk, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const FormActions = ({
   onSave,
@@ -24,7 +24,7 @@ const FormActions = ({
         className="btn-cancel"
         onClick={onCancel}
       >
-        <FontAwesomeIcon icon={faTrash} /> {cancelText}
+        <FontAwesomeIcon icon={faXmark} /> {cancelText}
       </button>
     </div>
   );

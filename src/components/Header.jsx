@@ -6,9 +6,12 @@ import {
   faUser,
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
 const Header = ({ toggleSidebar }) => {
+  const navigate = useNavigate();
+
   return (
     <header className="header">
       <div className="header-left">
@@ -24,8 +27,19 @@ const Header = ({ toggleSidebar }) => {
         </div>
 
         <FontAwesomeIcon icon={faBell} className="header-icon" />
-        <FontAwesomeIcon icon={faComment} className="header-icon" />
-        <FontAwesomeIcon icon={faUser} className="header-icon user-icon" />
+        
+        <FontAwesomeIcon
+          icon={faComment} className="header-icon"
+          onClick={() => navigate("/chat")}
+          style={{ cursor: "pointer" }}
+        />
+
+        <FontAwesomeIcon
+          icon={faUser}
+          className="header-icon user-icon"
+          onClick={() => navigate("/profile")}
+          style={{ cursor: "pointer" }}
+        />
       </div>
     </header>
   );
