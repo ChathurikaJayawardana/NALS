@@ -1,6 +1,5 @@
-import { useState } from "react";
+import React from "react";
 import DataTable from "../../components/tables/DataTable";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
@@ -62,10 +61,8 @@ const AgreementCollage = () => {
 
   return (
     <div className="container-full">
-      {/* Header */}
       <div className="content-header">
         <h2>AGREEMENT / COLLAGE DETAILS</h2>
-
         <p className="sub-title">
           <span>
             <FontAwesomeIcon icon={faHome} className="home" /> - Tables
@@ -74,7 +71,6 @@ const AgreementCollage = () => {
         </p>
       </div>
 
-      {/* Table */}
       <div className="table-card">
         <DataTable columns={columns} data={data} />
       </div>

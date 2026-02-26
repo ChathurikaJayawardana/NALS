@@ -72,7 +72,7 @@ const Sidebar = ({ collapsed }) => {
       label: "College",
       icon: <FontAwesomeIcon icon={faBuildingColumns} />,
       key: "college",
-      submenu: ["Add College", "View College"],
+      submenu: ["Add College"],
     },
     
     {

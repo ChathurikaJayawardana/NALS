@@ -4,13 +4,7 @@ import { AiFillFile } from "react-icons/ai";
 import { BiDownload } from "react-icons/bi";
 import "../../assets/styles/style.css";
 
-const DataTable = ({
-  columns,
-  data,
-  showActions = true,
-  onEdit,
-  onDelete,
-}) => {
+const DataTable = ({ columns, data, showActions = true, onEdit, onDelete }) => {
   const [filter, setFilter] = useState("");
   const [entries, setEntries] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,77 +67,79 @@ const DataTable = ({
       </div>
 
       {/* Table */}
-      <table className="data-table">
-        <thead>
-          <tr>
-            {columns.map((col) => (
-              <th key={col.key}>{col.label}</th>
-            ))}
-            {showActions && <th>Actions</th>}
-          </tr>
-        </thead>
-
-        <tbody>
-          {paginatedData.length > 0 ? (
-            paginatedData.map((row, i) => (
-              <tr key={i}>
-                {columns.map((col) => (
-                  <td key={col.key}>
-                    {col.type === "file" && Array.isArray(row[col.key]) ? (
-                      row[col.key].map((f, idx) => (
-                        <a
-                          key={idx}
-                          href={f.url}
-                          download
-                          className="file-link"
-                          style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "4px",
-                            marginRight: "8px",
-                          }}
-                        >
-                          <AiFillFile color="#ff6b6b" />
-                          {f.name}
-                          <BiDownload />
-                        </a>
-                      ))
-                    ) : (
-                      row[col.key]
-                    )}
-                  </td>
-                ))}
-
-                {showActions && (
-                  <td>
-                    <div className="table-actions">
-                      <FiEdit
-                        className="action-icon"
-                        onClick={() => onEdit && onEdit(row)}
-                        style={{ cursor: "pointer" }}
-                      />
-                      <FiTrash2
-                        className="action-icon"
-                        onClick={() => onDelete && onDelete(row)}
-                        style={{ cursor: "pointer" }}
-                      />
-                    </div>
-                  </td>
-                )}
-              </tr>
-            ))
-          ) : (
+      <div style={{ overflowX: "auto" }}>
+        <table className="data-table">
+          <thead>
             <tr>
-              <td colSpan={columns.length + (showActions ? 1 : 0)}>
-                No data available
-              </td>
+              {columns.map((col) => (
+                <th key={col.key}>{col.label}</th>
+              ))}
+              {showActions && <th>Actions</th>}
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {paginatedData.length > 0 ? (
+              paginatedData.map((row, i) => (
+                <tr key={i}>
+                  {columns.map((col) => (
+                    <td key={col.key}>
+                      {col.type === "file" && Array.isArray(row[col.key])
+                        ? row[col.key].map((f, idx) => (
+                            <a
+                              key={idx}
+                              href={f.url}
+                              download
+                              className="file-link"
+                              style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "4px",
+                                marginRight: "8px",
+                                textDecoration: "none",
+                                color: "#333",
+                              }}
+                            >
+                              <AiFillFile color="#ff6b6b" />
+                              {f.name}
+                              <BiDownload />
+                            </a>
+                          ))
+                        : row[col.key]}
+                    </td>
+                  ))}
+
+                  {showActions && (
+                    <td>
+                      <div className="table-actions" style={{ display: "flex", gap: "8px" }}>
+                        <FiEdit
+                          className="action-icon"
+                          onClick={() => onEdit && onEdit(row)}
+                          style={{ cursor: "pointer" }}
+                        />
+                        <FiTrash2
+                          className="action-icon"
+                          onClick={() => onDelete && onDelete(row)}
+                          style={{ cursor: "pointer" }}
+                        />
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={columns.length + (showActions ? 1 : 0)}>
+                  No data available
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
 
       {/* Footer */}
-      <div className="data-table-footer">
+      <div className="data-table-footer" style={{ marginTop: "10px", display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
         <span>
           Showing{" "}
           {filteredData.length === 0
@@ -153,12 +149,19 @@ const DataTable = ({
           {filteredData.length} entries
         </span>
 
-        <span style={{ float: "right" }} className="pagination">
+        <span className="pagination" style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
             <button
               key={p}
               className={p === currentPage ? "active" : ""}
               onClick={() => setCurrentPage(p)}
+              style={{
+                padding: "4px 8px",
+                border: "1px solid #ddd",
+                backgroundColor: p === currentPage ? "#007bff" : "#fff",
+                color: p === currentPage ? "#fff" : "#000",
+                cursor: "pointer",
+              }}
             >
               {p}
             </button>

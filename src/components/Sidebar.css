@@ -2,13 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
 .sidebar {
-  width: 260px;
-  background-color: #0f172a;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
+  width: 240px;
+  flex-shrink: 0;
+  background: #0f172a;
+  color: white;
   transition: width 0.3s ease;
-  overflow-y: auto;
 }
 
 .sidebar.collapsed {
@@ -164,4 +162,14 @@
 
 .submenu-hover-panel .submenu-item.active {
   background-color: #1e293b;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+
+  .sidebar {
+    width: 100%;
+  }
+
+  
 }

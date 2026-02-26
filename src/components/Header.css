@@ -64,6 +64,9 @@ button.menu-btn,
 .search input {
   border: none;
   outline: none;
+  padding: 0px !important;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size:14px;
 }
 
 .content {
